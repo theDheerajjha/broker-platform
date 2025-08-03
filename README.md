@@ -2,6 +2,9 @@
 
 This is a simple React app for a multi-broker stock platform demo. It uses mocked data and Tailwind CSS for styling.
 
+<img width="950" height="439" alt="image" src="https://github.com/user-attachments/assets/67d717cd-8d51-4902-8b8b-1c228aac25ec" />
+
+
 ## Features
 - Broker login with mock credentials
 - Holdings, Orderbook, and Positions pages
