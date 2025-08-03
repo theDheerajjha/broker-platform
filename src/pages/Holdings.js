@@ -6,7 +6,6 @@ const Holdings = ({ onOpenOrderPad }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate API call
     setTimeout(() => {
       setHoldings(holdingsData);
       setLoading(false);
@@ -14,7 +13,6 @@ const Holdings = ({ onOpenOrderPad }) => {
   }, []);
 
   const handleRowClick = (holding) => {
-    // Open order pad with the selected stock
     onOpenOrderPad(holding, 'BUY');
   };
 

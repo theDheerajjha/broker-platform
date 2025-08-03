@@ -6,7 +6,6 @@ const Orderbook = ({ onOpenOrderPad }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate API call
     setTimeout(() => {
       setOrderbook(orderbookData);
       setLoading(false);
@@ -14,7 +13,6 @@ const Orderbook = ({ onOpenOrderPad }) => {
   }, []);
 
   const handleRowClick = (stock) => {
-    // Open order pad with the selected stock
     onOpenOrderPad(stock, 'BUY');
   };
 

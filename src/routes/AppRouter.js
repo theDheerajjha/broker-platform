@@ -38,13 +38,9 @@ const AppRouter = () => {
 
   const handleOrderSubmit = (orderData) => {
     console.log('Order submitted:', orderData);
-    // Here you would typically send the order to your backend
   };
 
-  // Get current page stocks for FAB
   const getCurrentPageStocks = () => {
-    // This would be replaced with actual data from the current page
-    // For now, return a default stock
     return [{
       symbol: 'AAPL',
       name: 'Apple Inc.',
