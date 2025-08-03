@@ -22,11 +22,11 @@ const FAB = ({ onOpenOrderPad, stocks }) => {
     if (isDragging) {
       const newX = e.clientX - dragOffset.x;
       const newY = e.clientY - dragOffset.y;
-      
+
       // Keep FAB within viewport bounds
       const maxX = window.innerWidth - 60;
       const maxY = window.innerHeight - 60;
-      
+
       setPosition({
         x: Math.max(0, Math.min(newX, maxX)),
         y: Math.max(0, Math.min(newY, maxY))
@@ -42,7 +42,7 @@ const FAB = ({ onOpenOrderPad, stocks }) => {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
-      
+
       return () => {
         document.removeEventListener('mousemove', handleMouseMove);
         document.removeEventListener('mouseup', handleMouseUp);
@@ -58,10 +58,10 @@ const FAB = ({ onOpenOrderPad, stocks }) => {
 
   const handleActionClick = (action) => {
     setIsExpanded(false);
-    
+
     // Get the first stock from the current page or default to AAPL
     let selectedStock = stocks?.[0];
-    
+
     if (!selectedStock) {
       // Default stock if no stocks are available
       selectedStock = {
@@ -70,7 +70,7 @@ const FAB = ({ onOpenOrderPad, stocks }) => {
         currentPrice: 175.50
       };
     }
-    
+
     onOpenOrderPad(selectedStock, action);
   };
 
@@ -89,9 +89,8 @@ const FAB = ({ onOpenOrderPad, stocks }) => {
       {/* Main FAB */}
       <button
         onClick={handleFabClick}
-        className={`w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 transform ${
-          isExpanded ? 'scale-110' : 'scale-100'
-        }`}
+        className={`w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 transform ${isExpanded ? 'scale-110' : 'scale-100'
+          }`}
         style={{ cursor: isDragging ? 'grabbing' : 'pointer' }}
       >
         <span className="text-2xl font-bold">
@@ -109,7 +108,7 @@ const FAB = ({ onOpenOrderPad, stocks }) => {
           >
             <span className="text-lg font-bold">B</span>
           </button>
-          
+
           {/* Sell Button */}
           <button
             onClick={() => handleActionClick('SELL')}
