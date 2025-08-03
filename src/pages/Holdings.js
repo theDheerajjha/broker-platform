@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { holdingsData } from '../mock/holdings';
 
+// Page to show user's stock holdings
 const Holdings = ({ onOpenOrderPad }) => {
   const [holdings, setHoldings] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Load holdings data (mocked)
   useEffect(() => {
     setTimeout(() => {
       setHoldings(holdingsData);
@@ -12,6 +14,7 @@ const Holdings = ({ onOpenOrderPad }) => {
     }, 500);
   }, []);
 
+  // Open order pad for selected holding
   const handleRowClick = (holding) => {
     onOpenOrderPad(holding, 'BUY');
   };
@@ -43,6 +46,7 @@ const Holdings = ({ onOpenOrderPad }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="bg-white shadow rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
+            {/* Holdings table */}
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -118,6 +122,7 @@ const Holdings = ({ onOpenOrderPad }) => {
           </div>
         </div>
 
+        {/* Show message if no holdings */}
         {holdings.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-400 text-6xl mb-4">📊</div>

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { orderbookData } from '../mock/orderbook';
 
+// Page to show orderbook data
 const Orderbook = ({ onOpenOrderPad }) => {
   const [orderbook, setOrderbook] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Load orderbook data (mocked)
   useEffect(() => {
     setTimeout(() => {
       setOrderbook(orderbookData);
@@ -12,6 +14,7 @@ const Orderbook = ({ onOpenOrderPad }) => {
     }, 500);
   }, []);
 
+  // Open order pad for selected stock
   const handleRowClick = (stock) => {
     onOpenOrderPad(stock, 'BUY');
   };
@@ -43,6 +46,7 @@ const Orderbook = ({ onOpenOrderPad }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="bg-white shadow rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
+            {/* Orderbook table */}
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -122,6 +126,7 @@ const Orderbook = ({ onOpenOrderPad }) => {
           </div>
         </div>
 
+        {/* Show message if no orderbook data */}
         {orderbook.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-400 text-6xl mb-4">📈</div>

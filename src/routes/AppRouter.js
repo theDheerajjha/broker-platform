@@ -8,18 +8,23 @@ import BottomNav from '../components/BottomNav';
 import FAB from '../components/FAB';
 import OrderPadModal from '../components/OrderPadModal';
 
+// Main router for the app
 const AppRouter = () => {
+  // Track if user is logged in
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // State for order pad modal
   const [orderPadModal, setOrderPadModal] = useState({
     isOpen: false,
     stock: null,
     orderType: null
   });
 
+  // Called when login is successful
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
   };
 
+  // Open the order pad modal for a stock and type
   const handleOpenOrderPad = (stock, orderType) => {
     setOrderPadModal({
       isOpen: true,
@@ -28,6 +33,7 @@ const AppRouter = () => {
     });
   };
 
+  // Close the order pad modal
   const handleCloseOrderPad = () => {
     setOrderPadModal({
       isOpen: false,
@@ -36,10 +42,12 @@ const AppRouter = () => {
     });
   };
 
+  // Log order data (could send to backend)
   const handleOrderSubmit = (orderData) => {
     console.log('Order submitted:', orderData);
   };
 
+  // Get stocks for FAB (could be dynamic per page)
   const getCurrentPageStocks = () => {
     return [{
       symbol: 'AAPL',
@@ -48,6 +56,7 @@ const AppRouter = () => {
     }];
   };
 
+  // Show login if not authenticated
   if (!isAuthenticated) {
     return (
       <Router>
@@ -56,6 +65,7 @@ const AppRouter = () => {
     );
   }
 
+  // Main app routes and layout
   return (
     <Router>
       <div className="relative">
@@ -80,13 +90,13 @@ const AppRouter = () => {
             } 
           />
         </Routes>
-
+        {/* Bottom navigation and floating action button */}
         <BottomNav />
         <FAB 
           onOpenOrderPad={handleOpenOrderPad}
           stocks={getCurrentPageStocks()}
         />
-        
+        {/* Order pad modal for buy/sell */}
         <OrderPadModal
           isOpen={orderPadModal.isOpen}
           stock={orderPadModal.stock}

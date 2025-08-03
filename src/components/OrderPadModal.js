@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
+// Modal for placing buy/sell orders
 const OrderPadModal = ({ isOpen, onClose, stock, orderType, onOrderSubmit }) => {
+  // Form state
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
   const [orderTypeValue, setOrderTypeValue] = useState('MARKET');
@@ -10,6 +12,7 @@ const OrderPadModal = ({ isOpen, onClose, stock, orderType, onOrderSubmit }) => 
   const isBuy = orderType === 'BUY';
   const themeColor = isBuy ? 'green' : 'red';
 
+  // Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
     const orderData = {
@@ -26,6 +29,7 @@ const OrderPadModal = ({ isOpen, onClose, stock, orderType, onOrderSubmit }) => 
     onClose();
   };
 
+  // Reset form and close modal
   const handleClose = () => {
     setQuantity('');
     setPrice('');
@@ -36,6 +40,7 @@ const OrderPadModal = ({ isOpen, onClose, stock, orderType, onOrderSubmit }) => 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+        {/* Modal header with stock info */}
         <div className={`${isBuy ? 'bg-green-500' : 'bg-red-500'} text-white p-4 rounded-t-lg`}>
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-bold">
@@ -55,6 +60,7 @@ const OrderPadModal = ({ isOpen, onClose, stock, orderType, onOrderSubmit }) => 
           )}
         </div>
 
+        {/* Order form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -85,6 +91,7 @@ const OrderPadModal = ({ isOpen, onClose, stock, orderType, onOrderSubmit }) => 
             </select>
           </div>
 
+          {/* Show price field for limit orders */}
           {orderTypeValue === 'LIMIT' && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -103,6 +110,7 @@ const OrderPadModal = ({ isOpen, onClose, stock, orderType, onOrderSubmit }) => 
             </div>
           )}
 
+          {/* Estimated value */}
           <div className="bg-gray-50 p-3 rounded-md">
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">Estimated Value:</span>
